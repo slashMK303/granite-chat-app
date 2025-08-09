@@ -147,7 +147,7 @@ export default function Home() {
           showReadme={showReadme}
           setShowReadme={setShowReadme}
         />
-        <div className="flex flex-col flex-1 min-h-0 mt-20">
+        <div className="flex flex-col flex-1 min-h-0 lg:mt-20">
           <ChatArea
             messages={currentMessages}
             handleSubmit={handleSubmit}
