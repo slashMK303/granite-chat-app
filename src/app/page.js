@@ -137,13 +137,15 @@ export default function Home() {
         onDeleteChat={handleDeleteChat}
         activeConversationId={activeConversationId}
       />
-      <div className="flex flex-col flex-1 min-w-0">
+      <div className="flex flex-col flex-1 min-w-0 h-screen">
         <Navbar settings={settings} setSettings={setSettings} />
-        <ChatArea
-          messages={currentMessages}
-          handleSubmit={handleSubmit}
-          isLoading={isLoading}
-        />
+        <div className="flex flex-col flex-1 min-h-0">
+          <ChatArea
+            messages={currentMessages}
+            handleSubmit={handleSubmit}
+            isLoading={isLoading}
+          />
+        </div>
       </div>
     </div>
   );

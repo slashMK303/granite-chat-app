@@ -64,7 +64,7 @@ export default function ChatArea({ messages, handleSubmit, isLoading }) {
     return (
         <div className="flex flex-col h-full w-full bg-slate-900">
             {/* --- Area Pesan --- */}
-            <div className="flex-1 overflow-y-auto p-6 py-50">
+            <div className="flex-1 min-h-0 overflow-y-auto p-6">
                 <div className="max-w-3xl mx-auto space-y-8">
                     {messages.length === 0 && !isLoading && (
                         <div className="text-center text-slate-400 pt-20">
