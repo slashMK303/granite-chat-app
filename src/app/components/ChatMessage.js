@@ -15,17 +15,14 @@ export default function ChatMessage({ message }) {
     };
 
     return (
-        <div className={`flex ${isAIMessage ? 'justify-start' : 'justify-end'} mb-4 px-2 sm:px-0`}>
-            <div className={`flex items-start gap-2 sm:gap-4 w-full max-w-3xl ${isAIMessage ? '' : 'flex-row-reverse'}`}>
+        <div className={`flex ${isAIMessage ? 'justify-start' : 'justify-end'} mb-4`}>
+            <div className={`flex items-start gap-4 max-w-3xl ${isAIMessage ? '' : 'flex-row-reverse'}`}>
                 <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${isAIMessage ? 'bg-slate-700' : 'bg-blue-600'}`}>
                     {isAIMessage ? <Sparkles size={20} className="text-slate-300" /> : <User size={20} className="text-white" />}
                 </div>
                 <div
-                    className={`relative rounded-lg prose prose-invert max-w-full sm:max-w-none overflow-x-auto text-slate-200 break-words ${isAIMessage ? 'bg-slate-800' : 'bg-slate-700'}`}
-                    style={isAIMessage
-                        ? { padding: '1rem 1rem 0.75rem 1rem' }
-                        : { padding: '1rem' }
-                    }
+                    className={`relative rounded-lg prose prose-invert max-w-none overflow-x-auto text-slate-200 ${isAIMessage ? 'bg-slate-800' : 'bg-slate-700'}`}
+                    style={isAIMessage ? { padding: '2rem 2rem 1rem 1rem' } : { padding: '1rem' }}
                 >
                     {isAIMessage && (
                         <button
