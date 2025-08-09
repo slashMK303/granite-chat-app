@@ -25,7 +25,7 @@ export default function ChatMessage({ message }) {
                 <div
                     className={`relative rounded-lg prose prose-invert text-slate-200 break-words ${isAIMessage ? 'bg-slate-800' : 'bg-slate-700'}`}
                     style={{
-                        padding: isAIMessage ? '2rem 2rem 1rem 1rem' : '1rem',
+                        padding: isAIMessage ? '2.5rem 1rem 1rem 1rem' : '1rem',
                         width: 'fit-content',
                         maxWidth: '90%',
                         overflowX: 'auto'
