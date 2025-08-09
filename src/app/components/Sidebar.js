@@ -7,7 +7,6 @@ export default function Sidebar({ conversations, onNewChat, onSelectChat, onDele
 
     return (
         <>
-            {/* Tombol buka sidebar di mobile */}
             <button
                 className="fixed top-3 left-4 z-40 p-2 rounded-lg hover:bg-slate-800 transition hover:cursor-pointer text-white md:hidden"
                 onClick={() => setOpen(true)}
@@ -16,8 +15,7 @@ export default function Sidebar({ conversations, onNewChat, onSelectChat, onDele
                 <Menu size={24} />
             </button>
 
-            {/* Sidebar Desktop */}
-            <div className="hidden md:flex w-72 bg-slate-800 p-4 flex-col h-screen border-r border-slate-700">
+            <div className="hidden md:flex w-72 bg-slate-800 p-4 flex-col h-screen border-r border-slate-700 z-50">
                 <button
                     onClick={onNewChat}
                     className="flex items-center gap-3 w-full p-3 rounded-lg text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-colors mb-6 hover:cursor-pointer"
@@ -54,7 +52,6 @@ export default function Sidebar({ conversations, onNewChat, onSelectChat, onDele
                 </div>
             </div>
 
-            {/* Sidebar Mobile */}
             {open && (
                 <div className="fixed inset-0 z-50 flex">
                     <div className="w-64 bg-slate-800 p-4 flex flex-col h-full border-r border-slate-700 shadow-lg animate-slide-in-left">

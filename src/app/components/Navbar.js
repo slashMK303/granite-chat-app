@@ -44,7 +44,7 @@ export default function Navbar({ settings, setSettings, showSettings, setShowSet
 
     return (
         <>
-            <nav className="w-full bg-slate-900 border-b border-slate-700 px-4 py-3 flex items-center justify-between z-20">
+            <nav className="fixed top-0 left-0 w-full bg-slate-900 border-b border-slate-700 px-4 py-3 flex items-center justify-between z-5">
                 <span className="text-xl font-bold text-white tracking-wide select-none text-center w-full block">
                     Granite Chat AI
                 </span>
@@ -73,6 +73,8 @@ export default function Navbar({ settings, setSettings, showSettings, setShowSet
                     </div>
                 )}
             </nav>
+
+            <div className="h-[64px] md:h-0" />
 
             {showSettings && (
                 <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
@@ -133,20 +135,6 @@ export default function Navbar({ settings, setSettings, showSettings, setShowSet
                                     }}
                                 />
                             </div>
-                            <div className="text-sm text-slate-400 mt-2 space-y-2">
-                                <p><span className="font-bold text-slate-300">Min Token: </span>
-                                    Definition: Smallest token unit for tasks or operations.
-                                    Increase: Limits token usage to larger minimums.
-                                    Decrease: Allows use of even smallest token amounts.</p>
-                                <p><span className="font-bold text-slate-300">Max Token: </span>
-                                    Definition: Maximum tokens for a task or process.
-                                    Increase: Sets a stricter upper token limit.
-                                    Decrease: Caps maximum token usage for tasks.</p>
-                                <p><span className="font-bold text-slate-300">Temperature: </span>
-                                    Definition: Parameter scaling logits in language models.
-                                    Higher Temperature: Introduces randomness, diverse outputs.
-                                    Lower Temperature: Makes predictions more deterministic, less variation.</p>
-                            </div>
                         </div>
                         <div className="flex justify-end gap-2 mt-6">
                             <button
@@ -186,15 +174,8 @@ export default function Navbar({ settings, setSettings, showSettings, setShowSet
                             </p>
                             <ul>
                                 <li>Type your message below to start the conversation.</li>
-                                <li>Use the <b>Settings</b> button to customize AI parameters (min token, max token, temperature).</li>
+                                <li>Use the <b>Settings</b> button to customize AI parameters.</li>
                                 <li>The chat history will be saved automatically in your browser.</li>
-                            </ul>
-                            <p>
-                                <b>Creator:</b> Nanang Marvin Kurniawan
-                            </p>
-                            <ul className="mt-2">
-                                <li>My GitHub: <a href="https://github.com/slashMK303" target="_blank" rel="noopener noreferrer" className="underline text-blue-400">slashMK303</a></li>
-                                <li>GitHub Project: <a href="https://github.com/slashMK303/granite-chat-app.git" target="_blank" rel="noopener noreferrer" className="underline text-blue-400">slashMK303/granite-chat-ai</a></li>
                             </ul>
                         </div>
                         <div className="flex justify-end mt-6">
