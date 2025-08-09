@@ -133,7 +133,7 @@ export default function ChatArea({ messages, handleSubmit, isLoading, onShowSett
                 {showScrollDown && (
                     <button
                         onClick={scrollToBottom}
-                        className="fixed bottom-35 right-1/4 z-30 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition"
+                        className="fixed bottom-30 left-1/2 -translate-x-1/2 z-30 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition"
                         aria-label="Scroll to bottom"
                     >
                         <ArrowDown size={24} />

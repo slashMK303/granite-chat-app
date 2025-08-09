@@ -45,7 +45,7 @@ export default function Navbar({ settings, setSettings, showSettings, setShowSet
     return (
         <>
             <nav className="w-full bg-slate-900 border-b border-slate-700 px-4 py-3 flex items-center justify-between z-20">
-                <span className="text-xl font-bold text-white tracking-wide select-none">
+                <span className="text-xl font-bold text-white tracking-wide select-none text-center w-full block">
                     Granite Chat AI
                 </span>
                 <button
@@ -89,8 +89,14 @@ export default function Navbar({ settings, setSettings, showSettings, setShowSet
                                     min={1}
                                     max={localSettings.max_token}
                                     className="w-full p-2 rounded bg-slate-700 text-white"
-                                    value={localSettings.min_token}
-                                    onChange={e => setLocalSettings(s => ({ ...s, min_token: Number(e.target.value) }))}
+                                    value={localSettings.min_token === 0 ? '' : localSettings.min_token}
+                                    onChange={e => {
+                                        const val = e.target.value;
+                                        setLocalSettings(s => ({
+                                            ...s,
+                                            min_token: val === '' ? 0 : Number(val)
+                                        }));
+                                    }}
                                 />
                             </div>
                             <div>
@@ -99,8 +105,14 @@ export default function Navbar({ settings, setSettings, showSettings, setShowSet
                                     type="number"
                                     min={localSettings.min_token}
                                     className="w-full p-2 rounded bg-slate-700 text-white"
-                                    value={localSettings.max_token}
-                                    onChange={e => setLocalSettings(s => ({ ...s, max_token: Number(e.target.value) }))}
+                                    value={localSettings.max_token === 0 ? '' : localSettings.max_token}
+                                    onChange={e => {
+                                        const val = e.target.value;
+                                        setLocalSettings(s => ({
+                                            ...s,
+                                            max_token: val === '' ? 0 : Number(val)
+                                        }));
+                                    }}
                                 />
                             </div>
                             <div>
@@ -111,8 +123,14 @@ export default function Navbar({ settings, setSettings, showSettings, setShowSet
                                     max={2}
                                     step={0.01}
                                     className="w-full p-2 rounded bg-slate-700 text-white"
-                                    value={localSettings.temperature}
-                                    onChange={e => setLocalSettings(s => ({ ...s, temperature: Number(e.target.value) }))}
+                                    value={localSettings.temperature === 0 ? '' : localSettings.temperature}
+                                    onChange={e => {
+                                        const val = e.target.value;
+                                        setLocalSettings(s => ({
+                                            ...s,
+                                            temperature: val === '' ? 0 : Number(val)
+                                        }));
+                                    }}
                                 />
                             </div>
                             <div className="text-sm text-slate-400 mt-2 space-y-2">
