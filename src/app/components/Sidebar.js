@@ -1,17 +1,13 @@
 import { Plus, MessageSquare, Trash2, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
-export default function Sidebar({
-    conversations,
-    onNewChat,
-    onSelectChat,
-    onDeleteChat,
-    activeConversationId
+export default function Sidebar({ conversations, onNewChat, onSelectChat, onDeleteChat, activeConversationId
 }) {
     const [open, setOpen] = useState(false);
 
     return (
         <>
+            {/* Tombol buka sidebar di mobile */}
             <button
                 className="fixed top-3 left-4 z-40 p-2 rounded-lg hover:bg-slate-800 transition hover:cursor-pointer text-white md:hidden"
                 onClick={() => setOpen(true)}
@@ -20,6 +16,7 @@ export default function Sidebar({
                 <Menu size={24} />
             </button>
 
+            {/* Sidebar Desktop */}
             <div className="hidden md:flex w-72 bg-slate-800 p-4 flex-col h-screen border-r border-slate-700">
                 <button
                     onClick={onNewChat}
@@ -33,7 +30,8 @@ export default function Sidebar({
                     {conversations.map((convo) => (
                         <div
                             key={convo.id}
-                            className={`group flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors ${activeConversationId === convo.id ? 'bg-slate-700' : 'hover:bg-slate-700/50'}`}
+                            className={`group flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors ${activeConversationId === convo.id ? 'bg-slate-700' : 'hover:bg-slate-700/50'
+                                }`}
                             onClick={() => onSelectChat(convo.id)}
                         >
                             <div className="flex items-center gap-3 truncate">
@@ -47,7 +45,7 @@ export default function Sidebar({
                                     e.stopPropagation();
                                     onDeleteChat(convo.id);
                                 }}
-                                className="text-slate-500 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity hover:cursor-pointer"
+                                className="text-slate-500 hover:text-red-500 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity hover:cursor-pointer"
                             >
                                 <Trash2 size={18} />
                             </button>
@@ -56,6 +54,7 @@ export default function Sidebar({
                 </div>
             </div>
 
+            {/* Sidebar Mobile */}
             {open && (
                 <div className="fixed inset-0 z-50 flex">
                     <div className="w-64 bg-slate-800 p-4 flex flex-col h-full border-r border-slate-700 shadow-lg animate-slide-in-left">
@@ -81,7 +80,8 @@ export default function Sidebar({
                             {conversations.map((convo) => (
                                 <div
                                     key={convo.id}
-                                    className={`group flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors ${activeConversationId === convo.id ? 'bg-slate-700' : 'hover:bg-slate-700/50'}`}
+                                    className={`group flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors ${activeConversationId === convo.id ? 'bg-slate-700' : 'hover:bg-slate-700/50'
+                                        }`}
                                     onClick={() => {
                                         setOpen(false);
                                         onSelectChat(convo.id);
@@ -98,7 +98,7 @@ export default function Sidebar({
                                             e.stopPropagation();
                                             onDeleteChat(convo.id);
                                         }}
-                                        className="text-slate-500 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity hover:cursor-pointer"
+                                        className="text-slate-500 hover:text-red-500 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity hover:cursor-pointer"
                                     >
                                         <Trash2 size={18} />
                                     </button>
