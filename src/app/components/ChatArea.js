@@ -1,28 +1,28 @@
 import React, { useRef, useState, useEffect } from 'react';
 import ChatMessage from './ChatMessage';
-import { LoaderCircle, Send, Maximize2 } from 'lucide-react';
+import { LoaderCircle, Send, Maximize2, ArrowDown } from 'lucide-react';
 
-export default function ChatArea({ messages, handleSubmit, isLoading }) {
+export default function ChatArea({ messages, handleSubmit, isLoading, onShowSettings, onShowReadme }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [prompt, setPrompt] = useState('');
     const [showFullscreenBtn, setShowFullscreenBtn] = useState(false);
     const textareaRef = useRef(null);
     const modalRef = useRef(null);
+    const messagesEndRef = useRef(null);
+    const scrollAreaRef = useRef(null);
+    const [showScrollDown, setShowScrollDown] = useState(false);
 
-    // Cek jumlah baris textarea
     const handleInput = (e) => {
         setPrompt(e.target.value);
         const lines = e.target.value.split('\n').length;
         setShowFullscreenBtn(lines > 3);
     };
 
-    // Submit dari modal
     const handleModalDone = () => {
         setIsModalOpen(false);
         setTimeout(() => textareaRef.current && textareaRef.current.focus(), 0);
     };
 
-    // Submit form utama
     const onFormSubmit = (e) => {
         e.preventDefault();
         if (!prompt.trim()) return;
@@ -31,8 +31,6 @@ export default function ChatArea({ messages, handleSubmit, isLoading }) {
         setShowFullscreenBtn(false);
     };
 
-
-    // Enter kirim pesan, Shift+Enter untuk baris baru
     const handleKeyDown = (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
@@ -40,8 +38,6 @@ export default function ChatArea({ messages, handleSubmit, isLoading }) {
         }
     };
 
-
-    // Esc atau klik luar untuk tutup modal
     useEffect(() => {
         if (!isModalOpen) return;
 
@@ -61,10 +57,34 @@ export default function ChatArea({ messages, handleSubmit, isLoading }) {
         }
     };
 
+    useEffect(() => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [messages]);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (!scrollAreaRef.current) return;
+            const { scrollTop, scrollHeight, clientHeight } = scrollAreaRef.current;
+            setShowScrollDown(scrollHeight - scrollTop - clientHeight > 100);
+        };
+        const area = scrollAreaRef.current;
+        if (area) area.addEventListener("scroll", handleScroll);
+        return () => {
+            if (area) area.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
+    const scrollToBottom = () => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return (
         <div className="flex flex-col h-full w-full bg-slate-900">
-            {/* --- Area Pesan --- */}
-            <div className="flex-1 min-h-0 overflow-y-auto p-6">
+            <div ref={scrollAreaRef} className="flex-1 min-h-0 overflow-y-auto p-6 relative">
                 <div className="max-w-3xl mx-auto space-y-8">
                     {messages.length === 0 && !isLoading && (
                         <div className="text-center text-slate-400 pt-20">
@@ -72,6 +92,27 @@ export default function ChatArea({ messages, handleSubmit, isLoading }) {
                                 Granite Chat AI
                             </h1>
                             <p className="mt-2">Start the conversation by typing below.</p>
+                            <div>
+                                <p className="mt-2">
+                                    Before using this Granite Chat AI, you could read the instructions in the{' '}
+                                    <button
+                                        type="button"
+                                        className="underline text-blue-400 hover:text-blue-300"
+                                        onClick={onShowReadme}
+                                    >
+                                        readme
+                                    </button>
+                                    {' '}and configure the Granite AI settings in the{' '}
+                                    <button
+                                        type="button"
+                                        className="underline text-blue-400 hover:text-blue-300"
+                                        onClick={onShowSettings}
+                                    >
+                                        settings
+                                    </button>
+                                    .
+                                </p>
+                            </div>
                         </div>
                     )}
                     {messages.map((msg, index) => (
@@ -87,10 +128,19 @@ export default function ChatArea({ messages, handleSubmit, isLoading }) {
                             </div>
                         </div>
                     )}
+                    <div ref={messagesEndRef} />
                 </div>
+                {showScrollDown && (
+                    <button
+                        onClick={scrollToBottom}
+                        className="fixed bottom-35 right-1/4 z-30 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition"
+                        aria-label="Scroll to bottom"
+                    >
+                        <ArrowDown size={24} />
+                    </button>
+                )}
             </div>
 
-            {/* --- Form Input Fixed di Bawah --- */}
             <div className="sticky bottom-0 left-0 w-full bg-slate-900 border-t border-slate-700 z-10">
                 <div className="p-4 max-w-3xl mx-auto">
                     <form onSubmit={onFormSubmit} className="flex items-center gap-3 relative">
@@ -132,7 +182,6 @@ export default function ChatArea({ messages, handleSubmit, isLoading }) {
                 </div>
             </div>
 
-            {/* --- Modal Fullscreen --- */}
             {isModalOpen && (
                 <div
                     className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50"

@@ -1,4 +1,3 @@
-// app/components/Sidebar.js
 import { Plus, MessageSquare, Trash2 } from 'lucide-react';
 
 export default function Sidebar({ conversations, onNewChat, onSelectChat, onDeleteChat, activeConversationId }) {

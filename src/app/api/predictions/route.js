@@ -16,16 +16,16 @@ export async function POST(request) {
         );
     }
 
-    const { prompt } = await request.json();
+    const { prompt, min_tokens, max_tokens, temperature, top_p } = await request.json();
 
     const options = {
         model: 'ibm-granite/granite-3.3-8b-instruct',
         input: {
-            prompt: prompt,
-            max_tokens: 512,
-            temperature: 0.75,
-            top_p: 1,
-            // Anda bisa menyesuaikan parameter lain sesuai kebutuhan
+            prompt,
+            min_tokens: min_tokens ?? 1,
+            max_tokens: max_tokens ?? 512,
+            temperature: temperature ?? 0.75,
+            top_p: top_p ?? 1,
         }
     };
 

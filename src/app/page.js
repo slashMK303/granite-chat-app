@@ -1,4 +1,3 @@
-// app/page.js
 'use client';
 
 import { useState, useEffect } from "react";
@@ -9,15 +8,14 @@ import ChatArea from './components/ChatArea';
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 export default function Home() {
-  // SEMUA LOGIKA (STATE DAN FUNCTIONS) TETAP SAMA SEPERTI SEBELUMNYA
-  // ... (copy semua state dan functions dari jawaban sebelumnya)
   const [conversations, setConversations] = useState([]);
   const [activeConversationId, setActiveConversationId] = useState(null);
   const [currentMessages, setCurrentMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [showSettings, setShowSettings] = useState(false);
+  const [showReadme, setShowReadme] = useState(false);
 
-  // Load conversations from localStorage on initial render
   useEffect(() => {
     const storedConvos = localStorage.getItem('conversations');
     if (storedConvos) {
@@ -25,7 +23,6 @@ export default function Home() {
     }
   }, []);
 
-  // Save conversations to localStorage whenever they change
   useEffect(() => {
     if (conversations.length > 0) {
       localStorage.setItem('conversations', JSON.stringify(conversations));
@@ -69,11 +66,16 @@ export default function Home() {
     const updatedMessages = [...currentMessages, userMessage];
     setCurrentMessages(updatedMessages);
 
-    // --- Replicate API Call ---
     const response = await fetch("/api/predictions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ prompt }),
+      body: JSON.stringify({
+        prompt,
+        min_tokens: settings.min_token,
+        max_tokens: settings.max_token,
+        temperature: settings.temperature,
+        top_p: 1
+      }),
     });
 
     let prediction = await response.json();
@@ -93,16 +95,15 @@ export default function Home() {
         return;
       }
     }
-    // --- End Replicate API Call ---
 
     setIsLoading(false);
 
     if (prediction.status === "succeeded") {
       const aiMessage = { role: 'ai', content: prediction.output.join("") };
       const finalMessages = [...updatedMessages, aiMessage];
+
       setCurrentMessages(finalMessages);
 
-      // Update or create conversation in history
       const convoIndex = conversations.findIndex(c => c.id === activeConversationId);
       if (convoIndex > -1) {
         const updatedConvos = [...conversations];
@@ -123,9 +124,9 @@ export default function Home() {
   };
 
   const [settings, setSettings] = useState({
-    min_token: 1,
-    max_token: 2048,
-    temperature: 0.7,
+    min_token: 0,
+    max_token: 512,
+    temperature: 0.6,
   });
 
   return (
@@ -138,12 +139,21 @@ export default function Home() {
         activeConversationId={activeConversationId}
       />
       <div className="flex flex-col flex-1 min-w-0 h-screen">
-        <Navbar settings={settings} setSettings={setSettings} />
+        <Navbar
+          settings={settings}
+          setSettings={setSettings}
+          showSettings={showSettings}
+          setShowSettings={setShowSettings}
+          showReadme={showReadme}
+          setShowReadme={setShowReadme}
+        />
         <div className="flex flex-col flex-1 min-h-0">
           <ChatArea
             messages={currentMessages}
             handleSubmit={handleSubmit}
             isLoading={isLoading}
+            onShowSettings={() => setShowSettings(true)}
+            onShowReadme={() => setShowReadme(true)}
           />
         </div>
       </div>
