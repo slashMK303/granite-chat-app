@@ -28,7 +28,7 @@ export default function ChatMessage({ message }) {
                         <button
                             type="button"
                             onClick={handleCopy}
-                            className="absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white p-1 rounded transition"
+                            className="absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white p-1 rounded transition hover:cursor-pointer"
                             aria-label="Copy all"
                         >
                             <Copy size={16} />

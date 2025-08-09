@@ -5,7 +5,7 @@ export default function Sidebar({ conversations, onNewChat, onSelectChat, onDele
         <div className="w-72 bg-slate-800 p-4 flex flex-col h-screen border-r border-slate-700">
             <button
                 onClick={onNewChat}
-                className="flex items-center gap-3 w-full p-3 rounded-lg text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-colors mb-6"
+                className="flex items-center gap-3 w-full p-3 rounded-lg text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-colors mb-6 hover:cursor-pointer"
             >
                 <Plus size={22} />
                 New Chat
@@ -29,7 +29,7 @@ export default function Sidebar({ conversations, onNewChat, onSelectChat, onDele
                                 e.stopPropagation();
                                 onDeleteChat(convo.id);
                             }}
-                            className="text-slate-500 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                            className="text-slate-500 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity hover:cursor-pointer"
                         >
                             <Trash2 size={18} />
                         </button>

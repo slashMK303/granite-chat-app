@@ -148,7 +148,7 @@ export default function ChatArea({ messages, handleSubmit, isLoading, onShowSett
                             <textarea
                                 ref={textareaRef}
                                 name="prompt"
-                                className="w-full p-4 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 placeholder:text-slate-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-shadow resize-none"
+                                className="w-full p-4 pr-12 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 placeholder:text-slate-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-shadow resize-none"
                                 placeholder="Type your message here..."
                                 disabled={isLoading}
                                 autoComplete="off"
@@ -173,7 +173,7 @@ export default function ChatArea({ messages, handleSubmit, isLoading, onShowSett
                         </div>
                         <button
                             type="submit"
-                            className="p-4 rounded-lg bg-blue-600 text-white hover:bg-blue-700 disabled:bg-blue-600/50 disabled:cursor-not-allowed flex items-center justify-center"
+                            className="p-4 rounded-lg bg-blue-600 text-white hover:bg-blue-700 disabled:bg-blue-600/50 disabled:cursor-not-allowed flex items-center justify-center hover:cursor-pointer"
                             disabled={isLoading}
                         >
                             <Send size={20} />

@@ -49,7 +49,7 @@ export default function Navbar({ settings, setSettings, showSettings, setShowSet
                     Granite Chat AI
                 </span>
                 <button
-                    className="p-2 rounded-lg hover:bg-slate-800 transition"
+                    className="p-2 rounded-lg hover:bg-slate-800 transition hover:cursor-pointer"
                     onClick={() => setOpen(!open)}
                     aria-label="Menu"
                 >
@@ -59,13 +59,13 @@ export default function Navbar({ settings, setSettings, showSettings, setShowSet
                 {open && (
                     <div className="absolute right-4 top-16 bg-slate-800 rounded-lg shadow-lg py-2 w-48 border border-slate-700 z-30">
                         <button
-                            className="w-full text-left px-4 py-2 hover:bg-slate-700 text-white"
+                            className="w-full text-left px-4 py-2 hover:bg-slate-700 text-white hover:cursor-pointer"
                             onClick={() => { setShowSettings(true); setOpen(false); }}
                         >
                             Settings
                         </button>
                         <button
-                            className="w-full text-left px-4 py-2 hover:bg-slate-700 text-white"
+                            className="w-full text-left px-4 py-2 hover:bg-slate-700 text-white hover:cursor-pointer"
                             onClick={() => { setShowReadme(true); setOpen(false); }}
                         >
                             Readme
@@ -132,13 +132,13 @@ export default function Navbar({ settings, setSettings, showSettings, setShowSet
                         </div>
                         <div className="flex justify-end gap-2 mt-6">
                             <button
-                                className="px-4 py-2 rounded bg-slate-600 text-white hover:bg-slate-700"
+                                className="px-4 py-2 rounded bg-slate-600 text-white hover:bg-slate-700 hover:cursor-pointer"
                                 onClick={() => setShowSettings(false)}
                             >
                                 Cancel
                             </button>
                             <button
-                                className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
+                                className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 hover:cursor-pointer"
                                 onClick={handleSettingsSave}
                             >
                                 Save
@@ -157,14 +157,14 @@ export default function Navbar({ settings, setSettings, showSettings, setShowSet
                         <h2 className="text-lg font-bold mb-4 text-white">Readme</h2>
                         <div className="prose prose-invert text-slate-200 max-w-none">
                             <p>
-                                <b>Granite Chat AI</b> is a chat AI application based on the
+                                <b>Granite Chat AI</b> is a chat AI application based on the{" "}
                                 <a href="https://replicate.com/ibm-granite/granite-3.3-8b-instruct"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="underline text-blue-400">
                                     IBM Granite 3.3-8B Instruct
                                 </a>
-                                model.
+                                {" "}model.
                             </p>
                             <ul>
                                 <li>Type your message below to start the conversation.</li>
@@ -174,10 +174,14 @@ export default function Navbar({ settings, setSettings, showSettings, setShowSet
                             <p>
                                 <b>Creator:</b> Nanang Marvin Kurniawan
                             </p>
+                            <ul className="mt-2">
+                                <li>My GitHub: <a href="https://github.com/slashMK303" target="_blank" rel="noopener noreferrer" className="underline text-blue-400">slashMK303</a></li>
+                                <li>GitHub Project: <a href="https://github.com/slashMK303/granite-chat-app.git" target="_blank" rel="noopener noreferrer" className="underline text-blue-400">slashMK303/granite-chat-ai</a></li>
+                            </ul>
                         </div>
                         <div className="flex justify-end mt-6">
                             <button
-                                className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
+                                className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 hover:cursor-pointer"
                                 onClick={() => setShowReadme(false)}
                             >
                                 Close
