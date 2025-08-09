@@ -1,3 +1,4 @@
+
 ---
 # **📌 Granite Chat AI**
 
@@ -8,8 +9,8 @@ Granite Chat AI
 
 ## **2. Description**
 
-Granite Chat AI adalah website **AI Chat** berbasis web yang memanfaatkan [model IBM Granite 3.3-8B Instruct](https://replicate.com/ibm-granite/granite-3.3-8b-instruct) melalui [Replicate API](https://replicate.com/ibm-granite/granite-3.3-8b-instruct).
-Website ini memungkinkan pengguna untuk berinteraksi langsung dengan AI secara real-time, mengatur parameter seperti _Min Token_, _Max Token_, dan _Temperature_ untuk mengontrol gaya dan panjang jawaban AI.
+Granite Chat AI adalah apliaksi **AI Chat** berbasis web yang memanfaatkan [model IBM Granite 3.3-8B Instruct](https://replicate.com/ibm-granite/granite-3.3-8b-instruct) melalui [Replicate API](https://replicate.com/ibm-granite/granite-3.3-8b-instruct).
+Aplikasi ini memungkinkan pengguna untuk berinteraksi langsung dengan AI secara real-time, mengatur parameter seperti _Min Token_, _Max Token_, dan _Temperature_ untuk mengontrol gaya dan panjang jawaban AI.
 
 Proyek ini dibuat sebagai bagian dari **Capstone Project** dan untuk mempermudah pengguna untuk melakukan akses pada **IBM Granite** dengan antarmuka yang mudah digunakan oleh pengguna yang awam dalam teknologi, Kenapa saya membuat proyek ini, karena saya mendapati beberapa keluhan dari teman-teman yang kurang familiar dengan UI/UX dari replicate, dengan tujuan mempermudah pengguna untuk melakukan akses kepada **Granite** dengan fokus pada:
 
